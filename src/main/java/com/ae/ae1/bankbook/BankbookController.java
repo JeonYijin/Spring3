@@ -31,6 +31,7 @@ public class BankbookController {
 		System.out.println("Name: " + name);
 		BankbookDTO bankbookDTO = new BankbookDTO();
 		bankbookDTO.setBook_name("BookName");
+		model.addAttribute("dto", bankbookDTO);
 		model.addAttribute("test", "iu");
 		/* return "bankbook/bankbookSelect"; */
 	}
