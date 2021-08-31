@@ -12,5 +12,7 @@
 	<c:import url="./temp/boot_nav.jsp"></c:import>
 	
 	<h1>Renewal</h1>
+	
+	<img alt="kim" src="./resources/images/kim2.jpg">
 </body>
 </html>
