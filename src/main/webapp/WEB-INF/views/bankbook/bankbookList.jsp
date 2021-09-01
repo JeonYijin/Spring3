@@ -13,5 +13,25 @@
 	
 <h1>List renewal</h1>
 
+<div class="container-fluid">
+	<div class="col-md-8 mx-auto my-0">
+		<table class="table table-hover">
+			<tr>
+				<th>BOOK_NUM</th>
+				<th>BOOK_NAME</th>
+				<th>BOOK_RATE</th>
+			</tr>
+		<c:forEach items="${list}" var="dto" varStatus="i">
+			<tr>
+				<td>${dto.book_num}</td>
+				<td><a href="./bankbookSelect?BOOK_NUM=${dto.book_num}">${dto.book_name}</a></td>
+				<td>${dto.book_rate}</td>
+			</tr>
+		</c:forEach>
+		</table>
+	</div>
+
+</div>
+
 </body>
 </html>
