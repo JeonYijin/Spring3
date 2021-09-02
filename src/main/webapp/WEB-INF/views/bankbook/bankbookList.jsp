@@ -21,14 +21,16 @@
 				<th>BOOK_NAME</th>
 				<th>BOOK_RATE</th>
 			</tr>
-		<c:forEach items="${list}" var="dto" varStatus="i">
+		<c:forEach items="${list}" var="dto">
 			<tr>
 				<td>${dto.book_num}</td>
-				<td><a href="./bankbookSelect?BOOK_NUM=${dto.book_num}">${dto.book_name}</a></td>
+				<td><a href="./bankbookSelect?book_num=${dto.book_num}">${dto.book_name}</a></td>
 				<td>${dto.book_rate}</td>
 			</tr>
 		</c:forEach>
 		</table>
+		<a href="./bankbookInsert" class="btn btn-danger">ADD</a>
+		
 	</div>
 
 </div>

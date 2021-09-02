@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -29,16 +30,28 @@ public class BankbookController {
 	public void select(BankbookDTO bankbookDTO, Model model) {
 		bankbookDTO = bankbookService.getSelect(bankbookDTO);
 		
+	
 		model.addAttribute("test", "iu");
 		model.addAttribute("dtov", bankbookDTO);
 		
 	}
 	
-	@RequestMapping("bankbookInsert.do")
-	public String insert(BankbookDTO bankbookDTO) {
-		System.out.println(bankbookDTO.getBook_name());
-		System.out.println("insert");
-		return "redirect: ../";
+	@RequestMapping(value="bankbookInsert", method = RequestMethod.GET)
+	public void insert() {
+	
 	}
 	
+	@RequestMapping(value="bankbookInsert", method = RequestMethod.POST)
+	public String insert(BankbookDTO bankbookDTO) {
+		int result = bankbookService.setInsert(bankbookDTO);
+		
+		return "redirect: ./bankbookList";
+	}
+	
+	@RequestMapping("bankbookDelete")
+	public String delete(Long book_num) {
+		int result = bankbookService.setDelete(book_num);
+		
+		return "redirect:./bankbookList";
+	}
 }

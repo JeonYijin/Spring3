@@ -5,6 +5,10 @@
   
   <mapper namespace="com.ae.ae1.bankbook.BankbookDAO">
 	
+	<delete id="setDelete" parameterType="java.lang.Long">
+		DELETE BANKBOOK WHERE BOOK_NUM=#{book_num} 
+	</delete>
+	
 	<select id="getSelect" parameterType="com.ae.ae1.bankbook.BankbookDTO" resultType="com.ae.ae1.bankbook.BankbookDTO">
 		Select * from BANKBOOK WHERE BOOK_NUM=#{book_num}
 	</select>
