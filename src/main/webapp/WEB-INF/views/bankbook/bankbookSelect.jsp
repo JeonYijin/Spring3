@@ -10,10 +10,10 @@
 <body>
 	<h1>BankBook Select Page</h1>
 
-	<h2>${dto.getBook_name()}</h2>
+	<h1>BankBook: ${dtov.book_num}</h1>
 	
-	<h2>BOOK_NUM: ${dto.book_num}</h2>	
-	<h2>BOOK_NAME: ${dto.book_name}</h2>
-	<h2>BOOK_RATE: ${dto.book_rate}</h2>
+	<h2>BOOK_NUM: ${dtov.book_num}</h2>	
+	<h2>BOOK_NAME: ${dtov.book_name}</h2>
+	<h2>BOOK_RATE: ${dtov.book_rate}</h2>
 </body>
 </html>

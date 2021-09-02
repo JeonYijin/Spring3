@@ -34,7 +34,7 @@ public class BankbookController {
 		bankbookDTO = bankbookService.getSelect(bankbookDTO);
 		
 		model.addAttribute("test", "iu");
-		model.addAttribute("dto", bankbookDTO);
+		model.addAttribute("dtov", bankbookDTO);
 		
 	}
 	
