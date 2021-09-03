@@ -5,11 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ae.ae1.util.Pager;
+
 @Service
 public class BankbookService {
 	
 	@Autowired
 	private BankbookDAO bankbookDAO;
+	
+	public int setUpdate(BankbookDTO bankbookDTO) {
+		return bankbookDAO.setUpdate(bankbookDTO);
+	}
 	
 	public int setDelete(Long book_num) {
 		return bankbookDAO.setDelete(book_num);
@@ -19,8 +25,9 @@ public class BankbookService {
 		return bankbookDAO.getSelect(bankbookDTO);
 	}
 
-	public List<BankbookDTO> getList(){
-		return bankbookDAO.getList();
+	public List<BankbookDTO> getList(Pager pager){
+		pager.makeRow();
+		return bankbookDAO.getList(pager);
 	}
 	
 	public int setInsert(BankbookDTO bankbookDTO) {

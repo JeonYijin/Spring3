@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ae.ae1.util.Pager;
+
 @Controller
 @RequestMapping("/bankbook/*")
 public class BankbookController {
@@ -17,9 +19,9 @@ public class BankbookController {
 	private BankbookService bankbookService;
 	
 	@RequestMapping("bankbookList")
-	public ModelAndView list(ModelAndView mv) {
+	public ModelAndView list(ModelAndView mv, Pager pager) {
 		
-		List<BankbookDTO> ar = bankbookService.getList();
+		List<BankbookDTO> ar = bankbookService.getList(pager);
 		mv.addObject("list", ar);
 		mv.setViewName("bankbook/bankbookList");
 		
@@ -54,4 +56,21 @@ public class BankbookController {
 		
 		return "redirect:./bankbookList";
 	}
+	
+	@RequestMapping(value="bankbookUpdate", method = RequestMethod.GET)
+	public ModelAndView update(BankbookDTO bankbookDTO) {
+		bankbookDTO = bankbookService.getSelect(bankbookDTO);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("bankbook/bankbookUpdate");
+		mv.addObject("dtov", bankbookDTO);
+		return mv;
+	}
+	
+	@RequestMapping(value="bankbookUpdate", method = RequestMethod.POST)
+	public ModelAndView update(BankbookDTO bankbookDTO, ModelAndView mv) {
+		int result = bankbookService.setUpdate(bankbookDTO);
+		mv.setViewName("redirect:./bankbookList");
+		return mv;
+	}
+	
 }

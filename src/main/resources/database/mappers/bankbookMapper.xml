@@ -5,6 +5,12 @@
   
   <mapper namespace="com.ae.ae1.bankbook.BankbookDAO">
 	
+	<update id="setUpdate" parameterType="com.ae.ae1.bankbook.BankbookDTO">
+		UPDATE BANKBOOK SET BOOK_NAME=#{book_name}, BOOK_RATE=#{book_rate}, BOOK_SALE=#{book_sale}
+		WHERE BOOK_NUM=#{book_num}
+	</update>
+	
+	
 	<delete id="setDelete" parameterType="java.lang.Long">
 		DELETE BANKBOOK WHERE BOOK_NUM=#{book_num} 
 	</delete>
@@ -13,8 +19,11 @@
 		Select * from BANKBOOK WHERE BOOK_NUM=#{book_num}
 	</select>
   
-  	<select id="getList" resultType="com.ae.ae1.bankbook.BankbookDTO">
-  		SELECT * FROM BANKBOOK
+  	<select id="getList" resultType="com.ae.ae1.bankbook.BankbookDTO" parameterType="com.ae.ae1.util.Pager">
+  		SELECT * FROM
+    			(SELECT ROWNUM R, BK.* FROM
+        		(select * from BANKBOOK  order by book_num DESC) BK)
+			WHERE R BETWEEN #{startRow} AND #{lastRow}
   	
   	</select>
   	
@@ -23,5 +32,6 @@
   		VALUES(ACCOUT_SEQ.NEXTVAL,#{book_name}, #{book_rate}, #{book_sale})
 		  	
   	</insert>
+  
   
   </mapper>
