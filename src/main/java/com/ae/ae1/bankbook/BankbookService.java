@@ -27,6 +27,7 @@ public class BankbookService {
 
 	public List<BankbookDTO> getList(Pager pager){
 		pager.makeRow();
+		pager.makeNum();
 		return bankbookDAO.getList(pager);
 	}
 	

@@ -22,6 +22,7 @@ public class BankbookController {
 	public ModelAndView list(ModelAndView mv, Pager pager) {
 		
 		List<BankbookDTO> ar = bankbookService.getList(pager);
+		mv.addObject("pager", pager);
 		mv.addObject("list", ar);
 		mv.setViewName("bankbook/bankbookList");
 		
