@@ -22,7 +22,24 @@
   	<select id="getList" resultType="com.ae.ae1.bankbook.BankbookDTO" parameterType="com.ae.ae1.util.Pager">
   		SELECT * FROM
     			(SELECT ROWNUM R, BK.* FROM
-        		(select * from BANKBOOK  order by book_num DESC) BK)
+        		(select * from BANKBOOK
+        		 where
+        		 <choose>
+        		 	<when test="kind == 'num'">
+        		 		book_num
+        		 	</when>
+        		 	
+        		 	<when test="kind == 'name'">
+        		 		book_name
+        		 	</when>
+					<otherwise>
+						book_rate
+					</otherwise>        		 	
+        		 
+        		 </choose> 
+        		 
+        		 like '%' || #{search} || '%' 
+        		order by book_num DESC) BK)
 			WHERE R BETWEEN #{startRow} AND #{lastRow}
   	
   	</select>
@@ -33,5 +50,25 @@
 		  	
   	</insert>
   
+  	<select id="getTotalCount" resultType="java.lang.Long" parameterType="com.ae.ae1.util.Pager">
+		SELECT COUNT(BOOK_NUM) FROM BANKBOOK
+		where
+        	<choose>
+        		 	<when test="kind == 'num'">
+        		 		book_num
+        		 	</when>
+        		 	
+        		 	<when test="kind == 'name'">
+        		 		book_name
+        		 	</when>
+					<otherwise>
+						book_rate
+					</otherwise>        		 	
+        		 
+        		 </choose> 
+        		 
+        		 like '%' || #{search} || '%' 
+		
+  	</select>
   
   </mapper>

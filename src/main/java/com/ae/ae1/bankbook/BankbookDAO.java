@@ -18,6 +18,10 @@ public class BankbookDAO {
 	private final String NAMESPACE="com.ae.ae1.bankbook.BankbookDAO.";
 	
 	
+	public Long getTotalCount(Pager pager) {
+		return sqlSession.selectOne(NAMESPACE+"getTotalCount", pager);
+	}
+	
 	public int setUpdate(BankbookDTO bankbookDTO) {
 		return sqlSession.update(NAMESPACE+"setUpdate", bankbookDTO);
 	}
